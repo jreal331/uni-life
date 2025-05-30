@@ -27,16 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-
-
-
-
-
-    // --- Animasi Background Interaktif (Contoh: Partikel Bergerak Mengikuti Mouse) ---
-    // Anda bisa menggunakan library seperti particles.js atau membuat sendiri
-    // Ini adalah contoh SANGAT SEDERHANA untuk ilustrasi,
-    // untuk hasil yang lebih canggih, gunakan library.
-
     const animatedBg = document.querySelector('.animated-background');
     if (animatedBg) { 
         function createParticles() {
@@ -50,8 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 particle.style.height = particle.style.width;
                 particle.style.backgroundColor = getRandomColor();
                 animatedBg.appendChild(particle);
-
-                // Animasikan partikel (contoh sederhana)
+                
                 animateParticle(particle);
             }
         }
@@ -82,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             requestAnimationFrame(move);
         }
-
+// createParticles(); // Panggil fungsi untuk membuat partikel
         // Tambahkan style untuk .particle di CSS jika menggunakan contoh partikel di atas:
         /*
         .particle {
