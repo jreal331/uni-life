@@ -1,0 +1,326 @@
+/* Reset dan Font Dasar */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Playpen Sans Arabic'; /* Atau font lain yang lucu dan modern */
+    background-color: #fbd9e5; /* Warna background utama */
+    color: #333;
+    image-size: cover;
+    overflow-x: scroll; /* Mencegah scroll horizontal */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+.container {
+    max-width: 900px;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative; /* Untuk z-index jika diperlukan */
+    z-index: 1;
+}
+
+/* Animasi Teks Ucapan */
+.animated-text h1 {
+    font-size: 2.5em; /* Ukuran desktop */
+    color: #ec6393; /* Warna pink muda hangat */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    animation: fadeInDown 1.5s ease-out;
+    margin-bottom: 30px;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Galeri Foto */
+.photo-gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; 
+    margin-bottom: 40px;
+    flex-wrap: wrap; 
+}
+
+.photo-frame {
+    width: 200px; 
+    height: 200px; 
+    background-color: #EDE0D1; 
+    border: 5px solid #FCE6F0; 
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; /* Menandakan bisa diinteraksi */
+    animation: zoomIn 1s ease-out forwards;
+    opacity: 0; /* Mulai dengan tidak terlihat */
+}
+
+.photo-frame:nth-child(1) { animation-delay: 0.5s; }
+.photo-frame:nth-child(2) { animation-delay: 0.8s; }
+.photo-frame:nth-child(3) { animation-delay: 1.1s; } /* Jika ada foto ke-3 */
+
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Memastikan gambar mengisi bingkai tanpa distorsi */
+    transition: transform 0.4s ease;
+}
+
+.photo-frame:hover {
+    transform: scale(1.05) rotate(3deg); /* Efek hover sedikit membesar dan miring */
+    box-shadow: 8px 8px 20px rgba(0,0,0,0.2);
+}
+
+.photo-frame:hover img {
+    transform: scale(1.1); /* Efek zoom pada gambar saat bingkai di-hover */
+}
+
+.hover-animated-text {
+    font-family: 'Playpen Sans Arabic';
+    font-weight: bold;
+    position: absolute; /* Diposisikan relatif terhadap .photo-frame */
+    bottom: 0;          /* Muncul di bagian bawah frame */
+    left: 0;
+    right: 0;           /* Memastikan lebar penuh di dalam frame */
+    background-color: rgba(214, 194, 194, 0.65); /* Latar belakang semi-transparan agar teks terbaca */
+    color: #f076bd;        /* Warna teks putih */
+    padding: 10px;      /* Jarak teks dari tepi latar belakangnya */
+    text-align: center;
+    font-size: 14px;    /* Ukuran font teks */
+    box-sizing: border-box; /* Padding tidak menambah lebar/tinggi elemen */
+
+    /* Keadaan awal: tersembunyi dan siap untuk animasi */
+    opacity: 0;
+    transform: translateY(100%); /* Mulai dari bawah frame, lalu geser ke atas */
+    visibility: hidden;
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out, visibility 0.4s;
+    /* Diberi transisi agar perubahannya halus */
+}
+.photo-frame:hover .hover-animated-text {
+    opacity: 1; /* Tampilkan teks saat bingkai di-hover */
+    transform: translateY(0); /* Geser teks ke atas ke posisi normal */
+    visibility: visible; /* Pastikan teks terlihat */
+}
+
+/* Tombol Interaktif */
+.interactive-button {
+    background: linear-gradient(135deg, #ee7aa3, #e675a8); /* Gradasi pink */
+    color: #fff; /* Teks putih agar kontras */
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px; /* Tombol oval lucu */
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 5px 15px rgba(172, 25, 76, 0.7); /* Bayangan sesuai warna tombol */
+    animation: pulse 2s infinite;
+    outline: none;
+}
+
+.interactive-button .emoji {
+    margin-left: 8px;
+    display: inline-block;
+    animation: waveEmoji 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0px 5px 15px rgba(251, 217, 229, 0.7);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0px 8px 25px rgba(251, 217, 229, 1);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0px 5px 15px rgba(251, 217, 229, 0.7);
+    }
+}
+
+@keyframes waveEmoji {
+    from { transform: rotate(0deg) scale(1); }
+    to { transform: rotate(15deg) scale(1.2); }
+}
+
+.interactive-button:hover {
+    background: linear-gradient(135deg, #ec6fb8, #f0a5bf); /* Balik gradasi saat hover */
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0px 10px 20px rgba(251, 217, 229, 0.9);
+}
+
+.interactive-button:active {
+    transform: scale(1.05) translateY(0px); /* Efek saat diklik */
+    box-shadow: 0px 5px 15px rgba(251, 217, 229, 0.7);
+}
+
+/* Pop-up Pesan */
+.popup {
+    display: none; /* Sembunyikan secara default */
+    position: fixed; /* Tetap di layar saat scroll */
+    z-index: 1000; /* Pastikan di atas elemen lain */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: scroll; Aktifkan scroll jika konten panjang */
+    display: flex;
+    background-color: rgba(0,0,0,0.6); /* Latar belakang semi-transparan */
+    align-items: center; 
+    justify-content: center; /* Pusatkan konten */
+    backdrop-filter: blur(5px); /* Efek blur (opsional, perhatikan dukungan browser) */
+    animation: fadeInPopup 0.5s ease-out;
+}
+
+@keyframes fadeInPopup {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.popup-content {
+    background-color: #EDE0D1; /* Krem muda untuk background pop-up */
+    /* margin: 10% auto; /* Posisikan di tengah, lebih atas di mobile */
+    /* padding: 30px; */ 
+    border: 3px solid #FBD9E5; /* Border pink */
+    border-radius: 20px;
+    width: 80%; /* Lebar pop-up */
+    max-width: 600px; /* Lebar maksimum */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    position: relative;
+    animation: slideInPopup 0.6s ease-out;
+    text-align: left; /* Konten pesan rata kiri */
+    overflow-y: auto; /* Aktifkan scroll jika konten panjang */
+    max-height: 80vh; /* Batasi tinggi pop-up */
+}
+
+@keyframes slideInPopup {
+    from { transform: translateY(-50px) scale(0.9); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.popup-content h2 {
+    color: #FBD9E5;
+    margin-top: 0;
+    text-align: center; /* Judul pop-up di tengah */
+}
+
+.popup-content p {
+    line-height: 1.8;
+    color: #555;
+}
+
+.close-btn {
+    color: #FBD9E5;
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #FCE6F0;
+    text-decoration: none;
+    cursor: pointer;
+    transform: rotate(90deg) scale(1.2);
+}
+
+/* Animasi Background (Contoh Sederhana dengan CSS Gradient) */
+.animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Di belakang konten */
+    background: linear-gradient(45deg, #E9EDF6, #FCE6F0, #FBD9E5, #FBF4EB);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Media Queries untuk Responsif */
+@media (max-width: 768px) {
+    .animated-text h1 {
+        font-size: 2em; /* Ukuran lebih kecil untuk mobile */
+    }
+
+    .photo-gallery {
+        flex-direction: column; /* Susun foto ke bawah di mobile */
+        gap: 25px;
+    }
+
+    .photo-frame {
+        width: 180px; /* Ukuran foto mobile */
+        height: 180px;
+    }
+
+    .interactive-button {
+        padding: 12px 25px;
+        font-size: 1.1em;
+    }
+
+    .popup-content {
+        width: 90%;
+        margin: 20% auto; /* Lebih ke atas di mobile */
+        padding: 20px;
+    }
+
+    .popup-content h2 {
+        font-size: 1.5em;
+    }
+    .popup-content p {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .animated-text h1 {
+        font-size: 1.6em;
+    }
+
+    .photo-frame {
+        width: 150px;
+        height: 150px;
+    }
+
+     .interactive-button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    .popup-content {
+        margin: 25% auto 10% auto;
+    }
+}
